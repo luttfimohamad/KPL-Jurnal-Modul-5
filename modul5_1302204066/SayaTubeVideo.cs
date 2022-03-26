@@ -8,23 +8,27 @@ namespace modul5_1302204066
 {
     internal class SayaTubeVideo
     {
-        int id;
-        string title;
-        int playCount;
+        private int id;
+        private string title;
+        private int playCount;
 
         public SayaTubeVideo (string video)
         {
             this.id = new Random().Next(10000, 99999);
             this.playCount = 0;
+            if (video.Length > 200 && video == null)
+                throw new Exception("Judul yang anda masukkan salah");
             this.title = video;
         }
 
         public void IncreasePlayCount(int playCount)
         {
-            this.playCount = (this.playCount + playCount);
+            if (playCount > 25000000 && playCount < 0)
+                throw new Exception("Play count yang anda masukkan melebihi batas maksimal");
+            this.playCount = checked(this.playCount + playCount);
         }
 
-        public int GetPlaycount()
+        public int GetPlayCount()
         {
             return playCount;
         }
